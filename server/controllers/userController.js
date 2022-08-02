@@ -9,14 +9,14 @@ module.exports.register= async (req,res,next)=>{
         const usernameCheck= await User.findOne({username});
         if(usernameCheck){
             return res.json({
-                message:'username already exists',
+                message:'El nombre de usuario ya existe',
                 status:false
             });
         }
         const emailCheck= await User.findOne({email});
         if(emailCheck){
             return res.json({
-                message:'email already exists',
+                message:'El correo electronico ya existe',
                 status:false
             });
         }
@@ -32,7 +32,45 @@ module.exports.register= async (req,res,next)=>{
     }
     catch(err){
         return res.status(500).json({
-            message:'error registering user',
+            message:'error registrando usuario',
+            error:err
+        });
+    }
+}
+
+module.exports.login= async (req,res,next)=>{
+    console.log('controller login', req.body);
+    try{
+
+        const {email,password}=req.body;
+        // const usernameCheck= await User.findOne({username});
+        // if(usernameCheck){
+        //     return res.json({
+        //         message:'El nombre de usuario ya existe',
+        //         status:false
+        //     });
+        // }
+        const emailCheck= await User.findOne({email});
+        if(!emailCheck){
+            return res.json({
+                message:'Correo electronico o contraseña incorrectos',
+                status:false
+            });
+        }
+
+        const validPassword = await bcrypt.compare(password, emailCheck.password); 
+        if(!validPassword){
+            return res.json({
+                message:'Correo electronico o contraseña incorrectos',
+                status:false
+            });
+        }
+        delete emailCheck.password;
+        return res.status(200).json({status:true, user:emailCheck});
+    }
+    catch(err){
+        return res.status(500).json({
+            message:'error iniciando sesion de usuario',
             error:err
         });
     }
