@@ -8,14 +8,14 @@ module.exports.register= async (req,res,next)=>{
         const {username,email,password}=req.body;
         const usernameCheck= await User.findOne({username});
         if(usernameCheck){
-            return res.status(400).json({
+            return res.json({
                 message:'username already exists',
                 status:false
             });
         }
         const emailCheck= await User.findOne({email});
         if(emailCheck){
-            return res.status(400).json({
+            return res.json({
                 message:'email already exists',
                 status:false
             });
