@@ -75,3 +75,7 @@ module.exports.login= async (req,res,next)=>{
         });
     }
 }
+
+module.exports.setAvatar= async (req,res,next)=>{
+    console.log('controller setAvatar', req.body);
+}
