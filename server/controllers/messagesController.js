@@ -28,9 +28,11 @@ module.exports.addMessage = async (req, res, next) => {
         });
     }
 }
+
 module.exports.getAllMessages = async (req, res, next) => {
     try {
         const { from, to } = req.body;
+        console.log('controller getAllMessages', req.body);
     
         const messages = await Messages.find({
           users: {
