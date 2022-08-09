@@ -38,7 +38,8 @@ module.exports.getAllMessages = async (req, res, next) => {
           users: {
             $all: [from, to],
           },
-        }).sort({ updatedAt: 1 });
+        }).sort({ updatedAt: 1 });//sort by date
+         console.log('messages', messages);
     
         const projectedMessages = messages.map((msg) => {
           return {
