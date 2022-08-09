@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MessageSchema = new mongoose.Schema(
+const MessageSchema =  mongoose.Schema(
     {
     message: {
         text:{
@@ -10,7 +10,7 @@ const MessageSchema = new mongoose.Schema(
     },
         users:Array,
         sender:{
-            type:moongose.Schema.Types.ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             ref:'User',
             required:true,
         },      

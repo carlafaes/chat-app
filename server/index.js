@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 
 //routes
 const userRoutes=require('./routes/userRoutes');
+const messagesRoutes=require('./routes/messagesRoutes');
 
 
 const app=express();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth',userRoutes);
+app.use('/api/messages',messagesRoutes);
 
 const adminPassword = encodeURIComponent( process.env.MONGODB_PASS )
 //CONNECT TO MONGO DB
