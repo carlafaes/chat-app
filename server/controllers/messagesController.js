@@ -46,6 +46,7 @@ module.exports.getAllMessages = async (req, res, next) => {
         });
         res.json(projectedMessages);
       } catch (ex) {
+        console.log(err,'error');
         next(ex);
       }
 }
