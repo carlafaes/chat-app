@@ -92,6 +92,7 @@ module.exports.setAvatar = async (req, res, next) => {
     catch (err) {
         next(err)
     }
+    console.log(avatarImage,'avatarImage');
 }
 
 module.exports.getAllUsers = async (req, res, next) => {
