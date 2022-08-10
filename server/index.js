@@ -46,7 +46,7 @@ io.on('connection',(socket)=>{//cuando se conecta un usuario
         const sendUserSocket = onlineUsers.get(data.to);//socket del usuario a quien se envia el mensaje
 
         if(sendUserSocket){
-            socket.to(sendUserSocket).emit('mag-receive', data.msg);//emite el mensaje al usuario a quien se envia el mensaje
+            socket.to(sendUserSocket).emit('mag-receive', data.message);//emite el mensaje al usuario a quien se envia el mensaje
         }
     })
 });
