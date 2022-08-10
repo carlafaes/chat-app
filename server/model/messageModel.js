@@ -10,8 +10,8 @@ const MessageSchema =  mongoose.Schema(
     },
         users:Array,
         sender:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'User',
+            type:mongoose.Schema.Types.ObjectId,//referencia a un objeto de otro modelo
+            ref:'User',//referencia al modelo User
             required:true,
         },      
     },

@@ -31,7 +31,7 @@ module.exports.addMessage = async (req, res, next) => {
 
 module.exports.getAllMessages = async (req, res, next) => {
     try {
-        const { from, to } = req.body;
+        const { from, to } = req.body;//from y to son los usuarios que estan en la sesion
         console.log('controller getAllMessages', req.body);
     
         const messages = await Messages.find({
@@ -43,8 +43,8 @@ module.exports.getAllMessages = async (req, res, next) => {
     
         const projectedMessages = messages.map((msg) => {
           return {
-            fromSelf: msg.sender.toString() === from,
-            message: msg.message.text,
+            fromSelf: msg.sender.toString() === from,//si el mensaje es del usuario que esta en la sesion
+            message: msg.message.text,//message text
           };
         });
         res.json(projectedMessages);
